@@ -77,12 +77,4 @@ class WordFrequencyGameTest {
         //Then
         assertEquals("is 2\nthe 1", actual);
     }
-
-    private void validate_Input_words_process_to_expected_word(String sentence, String expected) {
-        WordFrequencyGame game = new WordFrequencyGame();
-        //When
-        String actual = game.getResult(sentence);
-        //Then
-        assertEquals(expected, actual);
-    }
 }
