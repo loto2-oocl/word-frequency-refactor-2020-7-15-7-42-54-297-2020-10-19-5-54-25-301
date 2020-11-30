@@ -1,8 +1,12 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     private static final String WHITE_SPACE_REGEX = "\\s+";
@@ -30,23 +34,12 @@ public class WordFrequencyGame {
     }
 
     private List<WordFrequency> calculateWordFrequency(String sentence) {
-        //split the input string with 1 to n pieces of spaces
-        String[] words = sentence.split(WHITE_SPACE_REGEX);
+        List<String> words = Arrays.asList(sentence.split(WHITE_SPACE_REGEX));
+        HashSet<String> distinctWords = new HashSet<>(words);
 
-        List<WordFrequency> wordFrequencyList = new ArrayList<>();
-        for (String word : words) {
-            WordFrequency wordFrequency = new WordFrequency(word, 1);
-            wordFrequencyList.add(wordFrequency);
-        }
-
-        //get the map for the next step of sizing the same word
-        Map<String, List<WordFrequency>> wordListMap = getWordListMap(wordFrequencyList);
-
-        List<WordFrequency> list = new ArrayList<>();
-        for (Map.Entry<String, List<WordFrequency>> entry : wordListMap.entrySet()) {
-            list.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
-        }
-        return list;
+        return distinctWords.stream()
+            .map(word -> new WordFrequency(word, Collections.frequency(words, word)))
+            .collect(Collectors.toList());
     }
 
     private String buildWordFrequencyLine(WordFrequency wordFrequency) {
