@@ -9,10 +9,10 @@ public class WordFrequencyGame {
     private static final String NEW_LINE_DELIMITER = "\n";
     private static final String CALCULATE_ERROR_MESSAGE = "Calculate Error";
 
-    public String getResult(String inputString) {
+    public String getResult(String sentence) {
         try {
             //split the input string with 1 to n pieces of spaces
-            String[] words = inputString.split(WHITE_SPACE_REGEX);
+            String[] words = sentence.split(WHITE_SPACE_REGEX);
 
             List<WordFrequency> wordFrequencyList = new ArrayList<>();
             for (String word : words) {
