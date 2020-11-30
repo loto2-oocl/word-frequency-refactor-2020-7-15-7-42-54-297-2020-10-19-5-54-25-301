@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WordFrequencyGameTest {
 
     @Test
-    void should_get_the_1_when_get_result_given_the() {
+    void should_return_the_1_when_get_result_given_sentence_the() {
         //Given
         String sentence = "the";
         String expected = "the 1";
