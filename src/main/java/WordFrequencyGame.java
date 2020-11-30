@@ -14,12 +14,16 @@ public class WordFrequencyGame {
         try {
             List<WordFrequency> list = calculateWordFrequency(sentence);
 
-            list.sort((word1, word2) -> word2.getCount() - word1.getCount());
+            list.sort(this::sortByCountDescending);
 
             return buildWordFrequencyResult(list);
         } catch (Exception exception) {
             return CALCULATE_ERROR_MESSAGE;
         }
+    }
+
+    private int sortByCountDescending(WordFrequency word1, WordFrequency word2) {
+        return word2.getCount() - word1.getCount();
     }
 
     private String buildWordFrequencyResult(List<WordFrequency> wordFrequencyList) {
