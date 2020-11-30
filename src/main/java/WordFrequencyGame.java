@@ -1,10 +1,7 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
@@ -44,20 +41,5 @@ public class WordFrequencyGame {
 
     private String buildWordFrequencyLine(WordFrequency wordFrequency) {
         return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getCount());
-    }
-
-    private Map<String, List<WordFrequency>> getWordListMap(List<WordFrequency> wordFrequencyList) {
-        Map<String, List<WordFrequency>> wordListMap = new HashMap<>();
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!wordListMap.containsKey(wordFrequency.getWord())) {
-                ArrayList arr = new ArrayList<>();
-                arr.add(wordFrequency);
-                wordListMap.put(wordFrequency.getWord(), arr);
-            } else {
-                wordListMap.get(wordFrequency.getWord()).add(wordFrequency);
-            }
-        }
-        return wordListMap;
     }
 }
