@@ -12,11 +12,11 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         try {
-            List<WordFrequency> list = calculateWordFrequency(sentence);
+            List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
 
-            list.sort(this::sortByCountDescending);
+            wordFrequencyList.sort(this::sortByCountDescending);
 
-            return buildWordFrequencyResult(list);
+            return buildWordFrequencyResult(wordFrequencyList);
         } catch (Exception exception) {
             return CALCULATE_ERROR_MESSAGE;
         }
