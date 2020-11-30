@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class WordFrequencyGame {
-
     private static final String WHITE_SPACE_REGEX = "\\s+";
     private static final String NEW_LINE_DELIMITER = "\n";
     private static final String CALCULATE_ERROR_MESSAGE = "Calculate Error";
