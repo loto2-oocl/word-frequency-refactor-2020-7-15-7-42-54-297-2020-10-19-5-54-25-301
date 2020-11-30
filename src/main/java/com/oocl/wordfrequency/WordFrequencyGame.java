@@ -1,7 +1,9 @@
 package com.oocl.wordfrequency;
+import java.util.ArrayList;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,13 +16,15 @@ public class WordFrequencyGame {
     public String getResult(String sentence) {
         try {
             List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
-
-            wordFrequencyList.sort(this::sortByCountDescending);
-
+            sortWordFrequencyListByCountDescending(wordFrequencyList);
             return buildWordFrequencyResult(wordFrequencyList);
         } catch (Exception exception) {
             return CALCULATE_ERROR_MESSAGE;
         }
+    }
+
+    private void sortWordFrequencyListByCountDescending(List<WordFrequency> wordFrequencyList) {
+        wordFrequencyList.sort(this::sortByCountDescending);
     }
 
     private int sortByCountDescending(WordFrequency word1, WordFrequency word2) {
