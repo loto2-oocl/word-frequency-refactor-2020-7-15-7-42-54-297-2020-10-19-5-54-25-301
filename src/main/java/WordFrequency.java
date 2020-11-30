@@ -15,4 +15,7 @@ public class WordFrequency {
         return this.count;
     }
 
+    public String buildWordFrequencyLine() {
+        return String.format("%s %d", this.getWord(), this.getCount());
+    }
 }

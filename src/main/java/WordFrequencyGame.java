@@ -25,7 +25,7 @@ public class WordFrequencyGame {
     private String buildWordFrequencyResult(List<WordFrequency> wordFrequencyList) {
         StringJoiner wordFrequencyResult = new StringJoiner(NEW_LINE_DELIMITER);
         for (WordFrequency wordFrequency : wordFrequencyList) {
-            wordFrequencyResult.add(buildWordFrequencyLine(wordFrequency));
+            wordFrequencyResult.add(wordFrequency.buildWordFrequencyLine());
         }
         return wordFrequencyResult.toString();
     }
@@ -37,9 +37,5 @@ public class WordFrequencyGame {
         return distinctWords.stream()
             .map(word -> new WordFrequency(word, Collections.frequency(words, word)))
             .collect(Collectors.toList());
-    }
-
-    private String buildWordFrequencyLine(WordFrequency wordFrequency) {
-        return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getCount());
     }
 }
