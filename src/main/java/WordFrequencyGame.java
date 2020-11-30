@@ -11,22 +11,7 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         try {
-            //split the input string with 1 to n pieces of spaces
-            String[] words = sentence.split(WHITE_SPACE_REGEX);
-
-            List<WordFrequency> wordFrequencyList = new ArrayList<>();
-            for (String word : words) {
-                WordFrequency wordFrequency = new WordFrequency(word, 1);
-                wordFrequencyList.add(wordFrequency);
-            }
-
-            //get the map for the next step of sizing the same word
-            Map<String, List<WordFrequency>> wordListMap = getWordListMap(wordFrequencyList);
-
-            List<WordFrequency> list = new ArrayList<>();
-            for (Map.Entry<String, List<WordFrequency>> entry : wordListMap.entrySet()) {
-                list.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
-            }
+            List<WordFrequency> list = calculateWordFrequency(sentence);
 
             list.sort((word1, word2) -> word2.getCount() - word1.getCount());
 
@@ -38,6 +23,26 @@ public class WordFrequencyGame {
         } catch (Exception exception) {
             return CALCULATE_ERROR_MESSAGE;
         }
+    }
+
+    private List<WordFrequency> calculateWordFrequency(String sentence) {
+        //split the input string with 1 to n pieces of spaces
+        String[] words = sentence.split(WHITE_SPACE_REGEX);
+
+        List<WordFrequency> wordFrequencyList = new ArrayList<>();
+        for (String word : words) {
+            WordFrequency wordFrequency = new WordFrequency(word, 1);
+            wordFrequencyList.add(wordFrequency);
+        }
+
+        //get the map for the next step of sizing the same word
+        Map<String, List<WordFrequency>> wordListMap = getWordListMap(wordFrequencyList);
+
+        List<WordFrequency> list = new ArrayList<>();
+        for (Map.Entry<String, List<WordFrequency>> entry : wordListMap.entrySet()) {
+            list.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
+        }
+        return list;
     }
 
     private String buildWordFrequencyLine(WordFrequency wordFrequency) {
