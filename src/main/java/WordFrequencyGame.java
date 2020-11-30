@@ -41,7 +41,7 @@ public class WordFrequencyGame {
     }
 
     private String buildWordFrequencyLine(WordFrequency wordFrequency) {
-        return wordFrequency.getWord() + " " + wordFrequency.getCount();
+        return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getCount());
     }
 
     private Map<String, List<WordFrequency>> getWordListMap(List<WordFrequency> wordFrequencyList) {
