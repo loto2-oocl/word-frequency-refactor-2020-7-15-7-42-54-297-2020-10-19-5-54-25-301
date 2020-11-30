@@ -38,3 +38,4 @@ Refactoring Steps
 31. Rename get to return
 32. Test cases use given when then structure
 33. Remove unused method
+34. Extract CalculateErrorException
