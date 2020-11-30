@@ -1,5 +1,7 @@
 package com.oocl.wordfrequency;
 
+import com.oocl.wordfrequency.exception.CalculateErrorException;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,15 +12,14 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
     private static final String WHITE_SPACE_REGEX = "\\s+";
     private static final String NEW_LINE_DELIMITER = "\n";
-    private static final String CALCULATE_ERROR_MESSAGE = "Calculate Error";
 
-    public String getResult(String sentence) {
+    public String getResult(String sentence) throws CalculateErrorException {
         try {
             List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
             List<WordFrequency> sortedWordFrequencyList = sortWordFrequencyListByCountDescending(wordFrequencyList);
             return buildWordFrequencyResult(sortedWordFrequencyList);
         } catch (Exception exception) {
-            return CALCULATE_ERROR_MESSAGE;
+            throw new CalculateErrorException();
         }
     }
 
@@ -34,7 +35,7 @@ public class WordFrequencyGame {
             .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private List<WordFrequency> calculateWordFrequency(String sentence) {
+    public List<WordFrequency> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACE_REGEX));
         HashSet<String> distinctWords = new HashSet<>(words);
 
