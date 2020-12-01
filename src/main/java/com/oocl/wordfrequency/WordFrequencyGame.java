@@ -5,7 +5,6 @@ import com.oocl.wordfrequency.exception.CalculateErrorException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,9 +36,9 @@ public class WordFrequencyGame {
 
     public List<WordFrequency> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACE_REGEX));
-        HashSet<String> distinctWords = new HashSet<>(words);
 
-        return distinctWords.stream()
+        return words.stream()
+            .distinct()
             .map(word -> new WordFrequency(word, Collections.frequency(words, word)))
             .collect(Collectors.toList());
     }
